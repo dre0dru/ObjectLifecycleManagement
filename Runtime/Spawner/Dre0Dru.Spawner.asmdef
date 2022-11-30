@@ -1,0 +1,14 @@
+{
+    "name": "Dre0Dru.Spawner",
+    "rootNamespace": "Dre0Dru.Spawner",
+    "references": [],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
