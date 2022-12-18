@@ -15,7 +15,7 @@ namespace Dre0Dru.Pool
         
         public void Release()
         {
-            _handle.Release();
+            _handle.Dispose();
         }
     }
 }

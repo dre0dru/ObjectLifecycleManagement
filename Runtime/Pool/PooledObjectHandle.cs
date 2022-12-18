@@ -12,23 +12,19 @@ namespace Dre0Dru.Pool
     //не получится сделать отдельный компонент, так как в таком случае отдельный будет имплментором
     //а это возвращение к текущей логике
     //TODO использовать, когда объект не наследует интерфейс и хотим пометить как poolable
-    public readonly struct PooledObjectHandle<TElement> : IDisposable
+    public readonly struct PooledObjectHandle<TElement> : IDisposable 
+        where TElement : class
     {
         private readonly TElement _element;
-        private readonly IPool<TElement> _pool;
+        private readonly IReleasePool<TElement> _pool;
 
-        public PooledObjectHandle(TElement element, IPool<TElement> pool)
+        public PooledObjectHandle(TElement element, IReleasePool<TElement> pool)
         {
             _element = element;
             _pool = pool;
         }
 
         public void Dispose() => _pool.Release(_element);
-
-        public void Release()
-        {
-            Dispose();
-        }
 
         public static implicit operator TElement(PooledObjectHandle<TElement> handle) =>
             handle._element;

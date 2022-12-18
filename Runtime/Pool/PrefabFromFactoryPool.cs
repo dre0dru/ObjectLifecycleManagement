@@ -3,7 +3,7 @@ using Dre0Dru.Factory;
 
 namespace Dre0Dru.Pool
 {
-    public class FactoryPool<TPrefab> : IPool<TPrefab>
+    public class PrefabFromFactoryPool<TPrefab> : IPool<TPrefab>, IFactory<TPrefab>
         where TPrefab : class
     {
         private readonly IFactory<TPrefab> _factory;
@@ -11,7 +11,7 @@ namespace Dre0Dru.Pool
 
         public int PooledObjectsCount => _pool.PooledObjectsCount;
 
-        public FactoryPool(IFactory<TPrefab> factory,
+        public PrefabFromFactoryPool(IFactory<TPrefab> factory,
             Action<TPrefab> onGetAction = null,
             Action<TPrefab> onReleaseAction = null,
             Action<TPrefab> destroyAction = null,
@@ -22,11 +22,6 @@ namespace Dre0Dru.Pool
             _factory = factory;
             _pool = new DelegatePool<TPrefab>(Create, onGetAction, onReleaseAction, destroyAction,
                 collectionCheck, defaultCapacity, maxPoolSize);
-        }
-
-        public void Prewarm(int count)
-        {
-            _pool.Prewarm(count);
         }
 
         public TPrefab Get()
@@ -44,7 +39,7 @@ namespace Dre0Dru.Pool
             _pool.Clear();
         }
 
-        private TPrefab Create() =>
+        public TPrefab Create() =>
             _factory.Create();
     }
 }

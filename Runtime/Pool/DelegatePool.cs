@@ -26,14 +26,6 @@ namespace Dre0Dru.Pool
                 collectionCheck, defaultCapacity, maxPoolSize);
         }
 
-        public void Prewarm(int count)
-        {
-            for (var i = 0; i < count; i++)
-            {
-                Release(Create());
-            }
-        }
-
         public TElement Get() =>
             _pool.Get();
 

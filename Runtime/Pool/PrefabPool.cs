@@ -1,11 +1,9 @@
 using System;
-using UnityEngine;
 
 namespace Dre0Dru.Pool
 {
-    //Intended usage - with decorators, delegating implementation to this class
-    public class PrefabsPool<TPrefab> : IPool<TPrefab>
-        where TPrefab : Component
+    public class PrefabPool<TPrefab> : IPool<TPrefab>
+        where TPrefab : class
     {
         private readonly TPrefab _prefab;
         private readonly IPool<TPrefab> _pool;
@@ -13,7 +11,7 @@ namespace Dre0Dru.Pool
 
         public int PooledObjectsCount => _pool.PooledObjectsCount;
 
-        public PrefabsPool(
+        public PrefabPool(
             TPrefab prefab,
             Func<TPrefab, TPrefab> createFunc,
             Action<TPrefab> onGetAction = null,
@@ -32,14 +30,6 @@ namespace Dre0Dru.Pool
             _createFunc = createFunc ?? throw new ArgumentNullException(nameof(createFunc));
             _pool = new DelegatePool<TPrefab>(Create, onGetAction, onReleaseAction, destroyAction,
                 collectionCheck, defaultCapacity, maxPoolSize);
-        }
-        
-        public void Prewarm(int count)
-        {
-            for (var i = 0; i < count; i++)
-            {
-                Release(Create());
-            }
         }
 
         public TPrefab Get() =>

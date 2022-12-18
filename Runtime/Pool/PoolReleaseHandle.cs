@@ -2,6 +2,7 @@
 {
     //TODO использовать, когда объект наследует нужный интефрфейс
     public readonly struct PoolReleaseHandle<TElement>
+        where TElement : class
     {
         private readonly IPool<TElement> _pool;
 
