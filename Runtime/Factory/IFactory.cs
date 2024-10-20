@@ -1,7 +1,6 @@
 namespace Dre0Dru.Factory
 {
     //TODO ComponentFactory that adds component to gameobjects and resolves dependencies?
-    //TODO VContainer factory
     public interface IFactory<out TResult>
     {
         TResult Create();

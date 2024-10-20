@@ -5,7 +5,8 @@ using VContainer;
 
 namespace Dre0Dru.Factory
 {
-    public class VContainerFactory : IIocFactory
+    //As VContainerResolver instead of Factory? With Inject method
+    public class VContainerFactory : IDynamicFactory
     {
         private readonly IObjectResolver _resolver;
 
@@ -13,6 +14,13 @@ namespace Dre0Dru.Factory
         public VContainerFactory(IObjectResolver resolver)
         {
             _resolver = resolver;
+        }
+
+        public TResult Create<TResult>()
+        {
+            var registration = CreateRegistration<TResult>();
+
+            return Resolve<TResult>(registration);
         }
 
         public TResult Create<TResult, T>(T param)
@@ -58,13 +66,6 @@ namespace Dre0Dru.Factory
             }
 
             return Resolve<TResult>(registration);
-        }
-
-        public TResult Inject<TResult>(TResult injected)
-        {
-            _resolver.Inject(injected);
-
-            return injected;
         }
 
         private TResult Resolve<TResult>(RegistrationBuilder registration)
