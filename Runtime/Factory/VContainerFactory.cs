@@ -5,7 +5,6 @@ using VContainer;
 
 namespace Dre0Dru.Factory
 {
-    //As VContainerResolver instead of Factory? With Inject method
     public class VContainerFactory : IDynamicFactory
     {
         private readonly IObjectResolver _resolver;

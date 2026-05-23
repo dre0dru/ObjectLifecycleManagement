@@ -1,0 +1,24 @@
+{
+    "name": "Dre0Dru.Initialization",
+    "rootNamespace": "Dre0Dru.Initialization",
+    "references": [
+        "GUID:f51ebe6a0ceec4240a699833d6309b23"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [
+        "UNITASK_SUPPORT"
+    ],
+    "versionDefines": [
+        {
+            "name": "com.cysharp.unitask",
+            "expression": "",
+            "define": "UNITASK_SUPPORT"
+        }
+    ],
+    "noEngineReferences": false
+}
